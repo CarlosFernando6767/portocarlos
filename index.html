@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1c">
+<title>Carlos Fernando | Digital Player Profile</title>
+<style>
+:root{
+  --bg:#080d1c;--panel:#111a30;--panel2:#172440;--cyan:#55eaff;
+  --violet:#9b8cff;--white:#f4f7ff;--muted:#aab7d0;--line:#2b3a5d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--white);font-family:Arial,Helvetica,sans-serif;
+  background:
+    radial-gradient(circle at 12% 10%,#16345b88,transparent 30%),
+    radial-gradient(circle at 88% 40%,#4b287044,transparent 28%),var(--bg);
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.13;
+  background-image:linear-gradient(#6276a322 1px,transparent 1px),linear-gradient(90deg,#6276a322 1px,transparent 1px);
+  background-size:40px 40px;mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1100px,calc(100% - 38px));margin:auto;position:relative}
+nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-weight:900;letter-spacing:1.5px}.logo b{color:var(--cyan)}
+.navlinks{display:flex;gap:25px;color:var(--muted);font-size:12px;letter-spacing:1px}
+.navlinks a:hover{color:var(--cyan)}
+.status{font-size:10px;letter-spacing:1px;color:var(--cyan);border:1px solid #55eaff66;padding:9px 12px;border-radius:30px;background:#55eaff0c}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:38px;align-items:center;padding:52px 0 45px;min-height:390px}
+.kicker{color:var(--cyan);font-size:11px;letter-spacing:3px;font-weight:800}
+h1{font-size:clamp(43px,6.5vw,75px);line-height:.99;letter-spacing:-3px;margin:19px 0}
+h1 span{color:var(--cyan);text-shadow:0 0 28px #55eaff55}
+.lead{max-width:590px;color:var(--muted);line-height:1.9;font-size:15px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:27px}
+.btn{padding:13px 18px;border-radius:7px;font-size:11px;font-weight:900;letter-spacing:1px;transition:.2s}
+.btn.primary{background:var(--cyan);color:#06101a;box-shadow:0 0 25px #55eaff35}
+.btn.secondary{border:1px solid var(--line);background:#ffffff08}
+.btn:hover{transform:translateY(-3px);filter:brightness(1.08)}
+.profile{
+  position:relative;padding:28px;border-radius:17px;text-align:center;
+  background:linear-gradient(145deg,#192b4b,#10182b);
+  border:1px solid #55eaff66;box-shadow:0 18px 60px #0007,0 0 35px #55eaff12;
+}
+.profile:before,.profile:after{content:"";position:absolute;width:35px;height:35px;border-color:var(--cyan);border-style:solid}
+.profile:before{top:-5px;left:-5px;border-width:2px 0 0 2px}
+.profile:after{bottom:-5px;right:-5px;border-width:0 2px 2px 0}
+.avatar{
+  width:142px;height:142px;margin:0 auto 19px;border-radius:50%;
+  display:grid;place-items:center;font-size:43px;font-weight:900;color:var(--cyan);
+  background:radial-gradient(circle at 50% 35%,#345c82,#121c32 70%);
+  border:3px solid var(--cyan);box-shadow:0 0 30px #55eaff40;
+}
+.profile h2{font-size:19px;margin:0 0 5px;letter-spacing:1px}
+.profile p{font-size:12px;color:var(--muted);margin:0}
+.player-label{display:inline-block;margin-top:18px;padding:7px 12px;background:#55eaff12;color:var(--cyan);font-size:9px;letter-spacing:2px;border:1px solid #55eaff44;border-radius:4px}
+.player-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:20px;text-align:left}
+.stat{padding:12px;background:#080f20;border:1px solid var(--line);border-radius:7px}
+.stat small{display:block;color:#8392af;font-size:9px;letter-spacing:1px;margin-bottom:5px}
+.stat strong{font-size:12px}
+section{padding:30px 0 40px}
+.section-top{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:18px}
+.section-top h2{margin:7px 0 0;font-size:25px;letter-spacing:.5px}
+.section-no{font-size:10px;color:#8392af;letter-spacing:2px}
+.card{background:linear-gradient(145deg,#141f37,#0e1729);border:1px solid var(--line);border-radius:12px;padding:25px}
+.card p{color:var(--muted);font-size:14px;line-height:1.9;margin:0}
+.identity-grid,.interest-grid,.goal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.tile{background:linear-gradient(145deg,#172440,#10182b);border:1px solid var(--line);border-radius:10px;padding:19px;min-height:105px}
+.tile small{display:block;color:#8494b4;font-size:9px;letter-spacing:1.6px;margin-bottom:9px}
+.tile strong{font-size:15px}
+.tile p{font-size:12px;color:var(--muted);line-height:1.7;margin:7px 0 0}
+.tile .icon{font-size:22px;margin-bottom:12px}
+.motto{
+  padding:35px 28px;text-align:center;border:1px solid #55eaff66;border-radius:14px;
+  background:linear-gradient(110deg,#122943,#211c42);box-shadow:0 12px 40px #0004;
+}
+.motto blockquote{font-size:clamp(22px,3.5vw,34px);font-weight:800;line-height:1.4;max-width:800px;margin:16px auto}
+.motto blockquote span{color:var(--cyan)}
+.motto p{color:var(--muted);font-size:12px;margin:0}
+footer{border-top:1px solid var(--line);padding:24px 0 32px;color:#7f8eaa;font-size:10px;letter-spacing:1px}
+.foot{display:flex;justify-content:space-between;gap:15px}
+@media(max-width:760px){
+ .navlinks{display:none}.hero{grid-template-columns:1fr;padding:52px 0;gap:30px}
+ .profile{max-width:420px;width:100%;margin:auto}
+ .identity-grid,.interest-grid,.goal-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:500px){
+ .wrap{width:calc(100% - 28px)}h1{letter-spacing:-2px}
+ .identity-grid,.interest-grid,.goal-grid{grid-template-columns:1fr}
+ .section-top{align-items:start;flex-direction:column}.card{padding:20px}
+ .foot{flex-direction:column}
+}
+
+.game-console{position:relative;overflow:hidden;border:1px solid #55eaff77;border-radius:15px;
+  background:linear-gradient(145deg,#101c34,#090f20);box-shadow:0 15px 45px #0006}
+.game-console:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;
+  background:repeating-linear-gradient(0deg,transparent 0 3px,#55eaff12 4px 5px)}
+.game-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 18px;
+  border-bottom:1px solid var(--line);font-size:10px;letter-spacing:1.5px;color:var(--cyan)}
+.game-body{position:relative;padding:25px;min-height:260px;display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:center}
+.game-avatar{height:145px;width:145px;border:2px solid var(--cyan);border-radius:12px;display:grid;place-items:center;
+  color:var(--cyan);font-size:45px;font-weight:900;background:radial-gradient(circle,#28476c,#0a1223 70%);
+  box-shadow:0 0 28px #55eaff33;animation:floaty 3s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.game-copy .game-tag{font-size:10px;letter-spacing:2px;color:var(--violet);font-weight:bold}
+.game-copy h3{font-size:clamp(20px,3vw,28px);margin:10px 0;color:var(--white)}
+.game-copy p{color:var(--muted);font-size:13px;line-height:1.8;margin:0;max-width:590px}
+.game-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.game-btn{cursor:pointer;border:1px solid #55eaff77;background:#55eaff;color:#07111e;padding:12px 16px;
+  border-radius:5px;font-weight:900;font-size:10px;letter-spacing:1px}
+.game-btn.alt{background:#ffffff08;color:var(--cyan)}
+.game-btn:hover{filter:brightness(1.15);transform:translateY(-2px)}
+.game-footer{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:13px 18px;border-top:1px solid var(--line);color:#8798b8;font-size:9px;letter-spacing:1px}
+.xp-track{height:6px;background:#263653;border-radius:10px;overflow:hidden;flex:1;max-width:220px}
+.xp-fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .35s}
+.game-choices{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}
+.game-choice{cursor:pointer;border:1px solid var(--line);background:#ffffff08;color:var(--muted);
+  border-radius:5px;padding:9px 12px;font-size:10px}
+.game-choice:hover,.game-choice.active{border-color:var(--cyan);color:var(--cyan);background:#55eaff12}
+@media(max-width:600px){.game-body{grid-template-columns:1fr;text-align:center;padding:22px}.game-avatar{margin:auto;width:115px;height:115px}
+.game-actions,.game-choices{justify-content:center}.game-footer{flex-wrap:wrap}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav>
+  <a class="logo" href="#"><b>CF</b> // PORTFOLIO</a>
+  <div class="navlinks">
+    <a href="#game">INTRODUCE ME</a><a href="#about">ABOUT</a><a href="#identity">IDENTITY</a><a href="#interest">INTEREST</a><a href="#vision">VISION</a>
+  </div>
+  <div class="status">● PLAYER PROFILE</div>
+</nav>
+
+<header class="hero">
+  <div>
+    <div class="kicker">WELCOME TO MY DIGITAL SPACE</div>
+    <h1>HELLO,<br>I'M <span>CARLOS.</span></h1>
+  </div>
+  <aside class="profile">
+    <div class="avatar">CF</div>
+    <h2>CARLOS FERNANDO</h2>
+    <p>Student · SMA Kasih Kemuliaan</p>
+    <div class="player-label">PLAYER 01 / DIGITAL LEARNER</div>
+    <div class="player-stats">
+      <div class="stat"><small>AGE</small><strong>17 YEARS OLD</strong></div>
+      <div class="stat"><small>GRADE</small><strong>CLASS XII</strong></div>
+    </div>
+  </aside>
+</header>
+
+
+<section id="game">
+  <div class="section-top">
+    <div><div class="kicker">00 / PLAYER INTRO</div><h2>INTRODUCE ME // THE GAME</h2></div>
+    <div class="section-no">INTERACTIVE PROFILE</div>
+  </div>
+  <div class="game-console">
+    <div class="game-head"><span>CF.exe — PLAYER INTRODUCTION</span><span id="game-status">SYSTEM READY</span></div>
+    <div class="game-body">
+      <div class="game-avatar" aria-hidden="true">CF</div>
+      <div class="game-copy">
+        <div class="game-tag" id="game-tag">WELCOME, PLAYER</div>
+        <h3 id="game-title">READY TO MEET CARLOS?</h3>
+        <p id="game-text">Masuk ke mini game ini untuk mengenal Carlos Fernando. Pilih START GAME dan mulai perjalanan singkatmu!</p>
+        <div class="game-actions">
+          <button class="game-btn" id="game-start" type="button">▶ START GAME</button>
+          <button class="game-btn alt" id="game-next" type="button" hidden>NEXT ▶</button>
+          <button class="game-btn alt" id="game-restart" type="button" hidden>↻ PLAY AGAIN</button>
+        </div>
+        <div class="game-choices" id="game-choices" hidden>
+          <button class="game-choice" data-choice="profile" type="button">PLAYER PROFILE</button>
+          <button class="game-choice" data-choice="interest" type="button">SKILL TREE</button>
+          <button class="game-choice" data-choice="goal" type="button">NEXT MISSION</button>
+        </div>
+      </div>
+    </div>
+    <div class="game-footer">
+      <span id="game-level">LEVEL 0 — NEW PLAYER</span>
+      <div class="xp-track"><div class="xp-fill" id="game-xp"></div></div>
+      <span id="game-xp-label">0 / 100 XP</span>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-top"><div><div class="kicker">01 / INTRODUCTION</div><h2>ABOUT ME</h2></div><div class="section-no">PERSONAL INFORMATION</div></div>
+  <div class="card">
+    <p>
+      Perkenalkan, nama saya Carlos Fernando. Saya berusia 17 tahun dan saat ini
+      menempuh pendidikan di SMA Kasih Kemuliaan sebagai siswa kelas XII.
+      Saya merupakan pribadi yang ingin terus belajar dan terbuka terhadap
+      pengetahuan baru. Saya percaya bahwa setiap proses dan pengalaman dapat
+      menjadi kesempatan untuk berkembang, membangun kemampuan, serta
+      mempersiapkan diri menghadapi masa depan.
+    </p>
+  </div>
+</section>
+
+<section id="identity">
+  <div class="section-top"><div><div class="kicker">02 / PLAYER DATA</div><h2>IDENTITY</h2></div><div class="section-no">PROFILE DETAILS</div></div>
+  <div class="identity-grid">
+    <div class="tile"><small>FULL NAME</small><strong>Carlos Fernando</strong></div>
+    <div class="tile"><small>AGE</small><strong>17 Tahun</strong></div>
+    <div class="tile"><small>EDUCATION</small><strong>SMA Kasih Kemuliaan</strong></div>
+    <div class="tile"><small>GRADE LEVEL</small><strong>Kelas XII</strong></div>
+    <div class="tile"><small>STATUS</small><strong>Pelajar</strong></div>
+    <div class="tile"><small>MAIN INTEREST</small><strong>Teknologi Digital</strong></div>
+  </div>
+</section>
+
+<section id="interest">
+  <div class="section-top"><div><div class="kicker">03 / SKILL TREE</div><h2>MY INTERESTS</h2></div><div class="section-no">LEARNING PATH</div></div>
+  <div class="interest-grid">
+    <div class="tile"><div class="icon">⌘</div><h3>Teknologi Digital</h3><p>Mengenal perkembangan teknologi dan memahami perannya dalam kehidupan sehari-hari.</p></div>
+    <div class="tile"><div class="icon">▣</div><h3>Pengetahuan Dasar</h3><p>Mempelajari dasar komputer, internet, aplikasi, dan cara kerja teknologi digital.</p></div>
+    <div class="tile"><div class="icon">↗</div><h3>Pengembangan Diri</h3><p>Melatih pola pikir kritis, kreatif, dan kemampuan beradaptasi dengan perubahan.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="section-top"><div><div class="kicker">04 / NEXT MISSION</div><h2>MY GOALS</h2></div><div class="section-no">FUTURE DEVELOPMENT</div></div>
+  <div class="goal-grid">
+    <div class="tile"><small>MISSION 01</small><strong>Learn the Basics</strong><p>Memahami konsep dan dasar-dasar teknologi digital secara bertahap.</p></div>
+    <div class="tile"><small>MISSION 02</small><strong>Build My Skills</strong><p>Mengembangkan kemampuan dan menambah pengalaman melalui proses belajar.</p></div>
+    <div class="tile"><small>MISSION 03</small><strong>Prepare the Future</strong><p>Menjadikan wawasan digital sebagai bekal untuk pendidikan dan karier.</p></div>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="motto">
+    <div class="kicker">05 / PERSONAL MOTTO</div>
+    <blockquote>“Terus berkembang dengan <span>pola pikir digital</span> untuk menghadapi tantangan dan peluang di era modern.”</blockquote>
+    <p>Keep Learning · Keep Growing · Embrace the Digital Future</p>
+  </div>
+</section>
+
+<footer><div class="foot"><span>© 2026 CARLOS FERNANDO</span><span>PERSONAL PORTFOLIO · END OF PROFILE</span></div></footer>
+</div>
+
+<script>
+(() => {
+  const tag = document.getElementById('game-tag');
+  const title = document.getElementById('game-title');
+  const text = document.getElementById('game-text');
+  const status = document.getElementById('game-status');
+  const start = document.getElementById('game-start');
+  const next = document.getElementById('game-next');
+  const restart = document.getElementById('game-restart');
+  const choices = document.getElementById('game-choices');
+  const level = document.getElementById('game-level');
+  const xp = document.getElementById('game-xp');
+  const xpLabel = document.getElementById('game-xp-label');
+
+  const stages = [
+    {
+      tag: 'PLAYER 01 / INTRODUCTION',
+      title: 'HELLO, I’M CARLOS FERNANDO.',
+      text: 'Saya adalah siswa kelas XII di SMA Kasih Kemuliaan. Saat ini, saya sedang mempersiapkan diri untuk terus belajar dan berkembang.'
+    },
+    {
+      tag: 'PLAYER DATA / PROFILE UNLOCKED',
+      title: 'THIS IS MY PROFILE.',
+      text: 'Saya berusia 17 tahun dan memiliki ketertarikan untuk mengenal dunia teknologi digital. Saya ingin mempelajarinya mulai dari dasar.'
+    },
+    {
+      tag: 'SKILL TREE / LEARNING MODE',
+      title: 'MY CURIOSITY IS MY POWER.',
+      text: 'Saya tertarik mempelajari dasar komputer, internet, aplikasi, perkembangan teknologi, serta mengembangkan pola pikir yang kritis dan kreatif.'
+    },
+    {
+      tag: 'MISSION / FUTURE GOALS',
+      title: 'THE JOURNEY HAS JUST BEGUN.',
+      text: 'Misi saya adalah memahami dasar teknologi digital, membangun kemampuan secara bertahap, dan mempersiapkan diri untuk pendidikan serta karier di masa depan.'
+    }
+  ];
+
+  let stage = -1;
+  function updateXP(value) {
+    xp.style.width = value + '%';
+    xpLabel.textContent = value + ' / 100 XP';
+    level.textContent = value === 100 ? 'LEVEL UP — DIGITAL EXPLORER' : 'LEVEL ' + Math.floor(value / 25) + ' — PLAYER IN PROGRESS';
+  }
+  function showStage() {
+    const item = stages[stage];
+    tag.textContent = item.tag;
+    title.textContent = item.title;
+    text.textContent = item.text;
+    status.textContent = 'MISSION ' + (stage + 1) + ' / ' + stages.length;
+    updateXP(Math.round(((stage + 1) / stages.length) * 100));
+    next.hidden = false;
+    start.hidden = true;
+    choices.hidden = true;
+    if (stage === stages.length - 1) {
+      next.hidden = true;
+      choices.hidden = false;
+      status.textContent = 'MISSION COMPLETE';
+    }
+  }
+  start.addEventListener('click', () => { stage = 0; showStage(); });
+  next.addEventListener('click', () => { stage = Math.min(stage + 1, stages.length - 1); showStage(); });
+  choices.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-choice]');
+    if (!button) return;
+    const detail = {
+      profile: ['PLAYER PROFILE', 'CARLOS FERNANDO', 'Pelajar berusia 17 tahun, kelas XII di SMA Kasih Kemuliaan.'],
+      interest: ['SKILL TREE', 'DIGITAL TECHNOLOGY', 'Belajar teknologi digital dari dasar, mengenal komputer, internet, aplikasi, dan mengembangkan diri.'],
+      goal: ['NEXT MISSION', 'KEEP LEARNING. KEEP GROWING.', 'Terus berkembang dengan pola pikir digital untuk menghadapi tantangan dan peluang di era modern.']
+    }[button.dataset.choice];
+    tag.textContent = detail[0];
+    title.textContent = detail[1];
+    text.textContent = detail[2];
+    document.querySelectorAll('.game-choice').forEach(item => item.classList.toggle('active', item === button));
+  });
+  restart.addEventListener('click', () => {
+    stage = -1;
+    tag.textContent = 'WELCOME, PLAYER';
+    title.textContent = 'READY TO MEET CARLOS?';
+    text.textContent = 'Masuk ke mini game ini untuk mengenal Carlos Fernando. Pilih START GAME dan mulai perjalanan singkatmu!';
+    status.textContent = 'SYSTEM READY';
+    start.hidden = false;
+    next.hidden = true;
+    restart.hidden = true;
+    choices.hidden = true;
+    document.querySelectorAll('.game-choice').forEach(item => item.classList.remove('active'));
+    updateXP(0);
+  });
+  // The final screen offers both profile exploration and a replay option.
+  const observer = new MutationObserver(() => {
+    if (status.textContent === 'MISSION COMPLETE') restart.hidden = false;
+  });
+  observer.observe(status, {childList:true, characterData:true, subtree:true});
+})();
+</script>
+
+</body>
+</html>
